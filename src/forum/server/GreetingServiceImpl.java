@@ -2,6 +2,7 @@ package forum.server;
 
 import forum.client.GreetingService;
 import forum.shared.FieldVerifier;
+
 import com.google.gwt.user.server.rpc.RemoteServiceServlet;
 
 /**
