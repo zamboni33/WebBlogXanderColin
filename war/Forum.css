@@ -5,11 +5,25 @@
 h1 {
   font-size: 2em;
   font-weight: bold;
-  color: #777777;
+  color: black;
   margin: 40px 0px 70px;
   text-align: center;
 }
 
+.banner {
+   position: relative;
+   height: 340px;
+   z-index: 1;
+   border-style: solid;
+   border-width: 1px;
+   border-color: gray;
+   background-image:url('http://i.imgur.com/KSZ4j42.jpg');
+   background-size: 100%;
+   text-size: 16;
+   text-shadow: 2px 2px 0px white;
+}
+
+body {background-color:pink;} 
 
 .sendButton {
   display: block;

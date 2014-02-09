@@ -16,7 +16,9 @@ import com.google.appengine.api.users.UserServiceFactory;
 
 public class ForumServlet extends HttpServlet {
 
-    public void doGet(HttpServletRequest req, HttpServletResponse resp)
+    public static boolean validUser = false;
+	
+	public void doGet(HttpServletRequest req, HttpServletResponse resp)
 
               throws IOException {
 
@@ -27,13 +29,13 @@ public class ForumServlet extends HttpServlet {
  
 
         if (user != null) {
-
+        	validUser = true;
             resp.setContentType("text/plain");
 
             resp.getWriter().println("Hello, " + user.getNickname());
 
         } else {
-
+        	validUser = false;
             resp.sendRedirect(userService.createLoginURL(req.getRequestURI()));
 
         }

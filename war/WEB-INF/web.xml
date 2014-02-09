@@ -36,6 +36,25 @@
         <url-pattern>/ofysign</url-pattern>
     </servlet-mapping>   
     
+    <servlet>
+        <servlet-name>subscribe</servlet-name>
+        <servlet-class>forum.Subscribe</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>subscribe</servlet-name>
+        <url-pattern>/subscribe</url-pattern>
+    </servlet-mapping>       
+    
+    <servlet>
+        <servlet-name>SendEmail</servlet-name>
+        <servlet-class>forum.SendEmail</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>SendEmail</servlet-name>
+        <url-pattern>/SendEmail</url-pattern>
+    </servlet-mapping> 
+    
+    
     <welcome-file-list>
 
         <welcome-file>ofyforum.jsp</welcome-file>

@@ -6,6 +6,7 @@
 <%@ page import="java.util.Collections" %>
 <%@ page import="com.googlecode.objectify.Objectify" %>
 <%@ page import="com.googlecode.objectify.ObjectifyService" %>
+<%@ page import="forum.Subscribe" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ page import="forum.Greeting"%>
 
@@ -13,18 +14,28 @@
 <html>
 
 <head>
-   <link type="text/css" rel="stylesheet" href="/stylesheets/main.css" />
+   <link type="text/css" rel="stylesheet" href="Forum.css" />
    <title>Starter Page for Web Blog</title>
    
 </head>
 
  <body>
 
-	<p> This is a starter forum you can post to after signing in with a google ID. </p>
-	<p> Below is one of our coveted users. </p>
 
-    <img src="http://www.viceland.com/blogs/en/files/2010/05/iherdsomething3.jpg"/>
-    
+	
+<div class="banner">
+    <div class="wrapper">
+        <h1>Creepy Guy Forums</h1>
+    </div>
+</div>
+
+	<p> This is a starter forum concerning creepy men. You can post after signing in with a google ID. </p>	
+	
+
+	  <form action="/subscribe" method="toggle">
+      <div><input type="submit" value="Subscribe" /></div>
+    </form>
+
 	
 <%
 
@@ -99,14 +110,15 @@ Collections.sort(greetings);
 
 %>
 
- 
+ <% if(user != null){ %>
 
     <form action="/ofysign" method="post">
       <p> Title: <div><textarea name="title" rows="1" cols="60"></textarea></div> </p>
       <p> Content: <div><textarea name="content" rows="3" cols="60"></textarea></div> </p>
-      <div><input type="submit" value="Post Greeting" /></div>
+      <div><input type="submit" value="Post" /></div>
       <input type="hidden" name="guestbookName" value="${fn:escapeXml(guestbookName)}"/>
     </form>
+ <%  } %>
 
   </body>
 

@@ -1,5 +1,3 @@
-
-
 package forum;
 
  
@@ -16,6 +14,7 @@ import com.google.appengine.api.users.User;
 import com.google.appengine.api.users.UserService;
 
 import com.google.appengine.api.users.UserServiceFactory;
+
 import com.googlecode.objectify.ObjectifyService;
 
 import static com.googlecode.objectify.ObjectifyService.ofy; 
