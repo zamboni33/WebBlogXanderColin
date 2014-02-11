@@ -2,6 +2,14 @@
 <cronentries>
   <cron>
     <url>/SendEmail</url>
+    <description>Send Quick Email</description>
+    <schedule>every 1 minutes</schedule>
+    <timezone>America/Chicago</timezone>
+    <target>version-1</target>
+  </cron>
+  
+  <cron>
+    <url>/SendEmail</url>
     <description>Send Daily Email</description>
     <schedule>every day 17:00</schedule>
     <timezone>America/Chicago</timezone>

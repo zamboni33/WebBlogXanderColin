@@ -1,8 +1,4 @@
-
-
 package forum;
-
- 
 
 import com.google.appengine.api.datastore.DatastoreService;
 
@@ -20,13 +16,9 @@ import com.google.appengine.api.users.UserService;
 
 import com.google.appengine.api.users.UserServiceFactory;
 
- 
-
 import java.io.IOException;
 
 import java.util.Date;
-
- 
 
 import javax.servlet.http.HttpServlet;
 
@@ -34,56 +26,49 @@ import javax.servlet.http.HttpServletRequest;
 
 import javax.servlet.http.HttpServletResponse;
 
- 
-
 public class SignForumServlet extends HttpServlet {
 
-    public void doPost(HttpServletRequest req, HttpServletResponse resp)
+	public void doPost(HttpServletRequest req, HttpServletResponse resp)
 
-                throws IOException {
+	throws IOException {
 
-        UserService userService = UserServiceFactory.getUserService();
+		UserService userService = UserServiceFactory.getUserService();
 
-        User user = userService.getCurrentUser();
+		User user = userService.getCurrentUser();
 
- 
+		// We have one entity group per Guestbook with all Greetings residing
 
-        // We have one entity group per Guestbook with all Greetings residing
+		// in the same entity group as the Guestbook to which they belong.
 
-        // in the same entity group as the Guestbook to which they belong.
+		// This lets us run a transactional ancestor query to retrieve all
 
-        // This lets us run a transactional ancestor query to retrieve all
+		// Greetings for a given Guestbook. However, the write rate to each
 
-        // Greetings for a given Guestbook.  However, the write rate to each
+		// Guestbook should be limited to ~1/second.
 
-        // Guestbook should be limited to ~1/second.
+		String guestbookName = req.getParameter("guestbookName");
 
-        String guestbookName = req.getParameter("guestbookName");
+		Key guestbookKey = KeyFactory.createKey("Guestbook", guestbookName);
 
-        Key guestbookKey = KeyFactory.createKey("Guestbook", guestbookName);
+		String content = req.getParameter("content");
 
-        String content = req.getParameter("content");
+		Date date = new Date();
 
-        Date date = new Date();
+		Entity greeting = new Entity("Greeting", guestbookKey);
 
-        Entity greeting = new Entity("Greeting", guestbookKey);
+		greeting.setProperty("user", user);
 
-        greeting.setProperty("user", user);
+		greeting.setProperty("date", date);
 
-        greeting.setProperty("date", date);
+		greeting.setProperty("content", content);
 
-        greeting.setProperty("content", content);
+		DatastoreService datastore = DatastoreServiceFactory
+				.getDatastoreService();
 
- 
+		datastore.put(greeting);
 
-        DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
+		resp.sendRedirect("/guestbook.jsp?guestbookName=" + guestbookName);
 
-        datastore.put(greeting);
-
- 
-
-        resp.sendRedirect("/guestbook.jsp?guestbookName=" + guestbookName);
-
-    }
+	}
 
 }

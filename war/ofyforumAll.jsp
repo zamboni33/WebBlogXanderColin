@@ -18,7 +18,20 @@
    <link type="text/css" rel="stylesheet" href="Forum.css" />
    <title>Starter Page for Web Blog</title>
    
+<script type="text/Javascript"> 
 
+function expandcollapse (postid) { 
+
+   whichpost = document.getElementById(postid); 
+   
+   if (whichpost.className=="postshown") { 
+      whichpost.className="posthidden"; 
+   } 
+   else { 
+      whichpost.className="postshown"; 
+   } 
+} 
+</script>
    
 </head>
 
@@ -90,13 +103,8 @@ Collections.sort(greetings);
         %>
         <p>Messages in Guestbook '${fn:escapeXml(guestbookName)}'.</p>
         <%
-//         for (Greeting greeting : greetings) {
-        java.util.Iterator<Greeting> greetIt = greetings.iterator();
-        int i = 0;
-        while(greetIt.hasNext() && i < 4){
-        	i += 1;
-        	Greeting greeting = greetIt.next();
-        	pageContext.setAttribute("greeting_title",
+        for (Greeting greeting : greetings) {
+            pageContext.setAttribute("greeting_title",
                                      greeting.getTitle());
             pageContext.setAttribute("greeting_content",
                                      greeting.getContent());

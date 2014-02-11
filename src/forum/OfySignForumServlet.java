@@ -58,8 +58,11 @@ public class OfySignForumServlet extends HttpServlet {
         String title = req.getParameter("title");
         String content = req.getParameter("content");
         Greeting greeting = new Greeting(user, title, content);
+        NewPosts newPost = new NewPosts(user, title, content);
         ofy().save().entity(greeting).now();
+        ofy().save().entity(newPost).now();
         resp.sendRedirect("/ofyforum.jsp");
+        
         
 //        Date date = new Date();
 //        Entity greeting = new Entity("Greeting", guestbookKey);
@@ -73,7 +76,7 @@ public class OfySignForumServlet extends HttpServlet {
 
  
 
-        resp.sendRedirect("/ofyforum.jsp?guestbookName=");
+        resp.sendRedirect("/ofyforum.jsp");
 
     }
 

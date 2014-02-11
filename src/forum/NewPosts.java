@@ -7,14 +7,14 @@ import com.googlecode.objectify.annotation.Id;
  
  
 @Entity
-public class Greeting implements Comparable<Greeting> {
+public class NewPosts implements Comparable<NewPosts> {
     @Id Long id;
     User user;
     String title;
     String content;
     Date date;
-    private Greeting() {}
-    public Greeting(User user, String title, String content) {
+    private NewPosts() {}
+    public NewPosts(User user, String title, String content) {
         this.user = user;
         this.title = title;
         this.content = content;
@@ -30,13 +30,13 @@ public class Greeting implements Comparable<Greeting> {
     public String getContent() {
         return content;
     }
- 
+    
     public Date getDate() {
         return date;
-    }    
+    }  
     
     @Override
-    public int compareTo(Greeting other) {
+    public int compareTo(NewPosts other) {
         if (date.after(other.date)) {
             return -1;
         } else if (date.before(other.date)) {
@@ -44,4 +44,9 @@ public class Greeting implements Comparable<Greeting> {
         }
         return 0;
     }
+    
+    public Long getID(){
+    	return this.id;
+    }
+    
 }

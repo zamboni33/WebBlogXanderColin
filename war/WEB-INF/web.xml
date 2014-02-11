@@ -54,6 +54,15 @@
         <url-pattern>/SendEmail</url-pattern>
     </servlet-mapping> 
     
+    <servlet>
+        <servlet-name>cancel</servlet-name>
+        <jsp-file>ofyforum.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>cancel</servlet-name>
+        <url-pattern>/</url-pattern>
+    </servlet-mapping>    
+    
     
     <welcome-file-list>
 
